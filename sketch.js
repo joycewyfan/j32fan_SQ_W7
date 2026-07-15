@@ -438,10 +438,10 @@ function drawStartScreen() {
   textSize(16);
   text("Click to start", width / 2, height / 2 + 80);
 
-  // Hint for students — no debug panel yet
+  // Hint for students — there is a debug panel
   fill(60);
   textSize(11);
-  text("No debug panel yet — that's your job!", width / 2, height - 20);
+  text("Debug Panel (Press D to see", width / 2, height - 20);
 }
 
 // ------------------------------------------------------------
@@ -500,18 +500,16 @@ function drawGameOver() {
 // in the same position regardless of which level is loaded.
 // ------------------------------------------------------------
 function drawDebugPanel() {
-  // Background panel
+  // Overlay panel
   fill(0, 0, 0, 200);
   noStroke();
-  rect(0, 0, width, 80);
+  rect(0, 420, 600, 80);
 
-  // Title
   fill(255, 220, 50);
   textSize(11);
   textAlign(LEFT);
-  text("DEBUG MODE (D to close)", 12, 18);
+  text("DEBUG MODE (D to close)", 12, 438);
 
-  // Buttons 
   let buttons = [
     "S: Start",
     "1: Level 1",
@@ -521,7 +519,6 @@ function drawDebugPanel() {
     "O: Game Over"
   ];
 
-  // Wanted to make the button evenly spaced across the width of the canvas
   let buttonWidth = 95;
   let buttonHeight = 34;
   let gap = 5;
@@ -529,19 +526,21 @@ function drawDebugPanel() {
   let totalWidth = buttons.length * buttonWidth + (buttons.length - 1) * gap;
   let startX = (width - totalWidth) / 2;
 
+  let buttonY = 450;
+
   for (let i = 0; i < buttons.length; i++) {
     let x = startX + i * (buttonWidth + gap);
 
     fill(60, 60, 90);
     stroke(100, 100, 140);
     strokeWeight(1);
-    rect(x, 30, buttonWidth, buttonHeight, 4);
+    rect(x, buttonY, buttonWidth, buttonHeight, 4);
 
     fill(200);
     noStroke();
     textAlign(CENTER, CENTER);
     textSize(10);
-    text(buttons[i], x + buttonWidth / 2, 47);
+    text(buttons[i], x + buttonWidth / 2, buttonY + buttonHeight / 2);
   }
 }
 
